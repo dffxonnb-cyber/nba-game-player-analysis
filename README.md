@@ -1,12 +1,32 @@
-# alone_NBA – NBA 경기·선수 분석
+# nba-game-player-analysis
 
-NBA 공개 데이터셋을 활용해 경기 승리 요인, 선수 성과 예측, 플레이 스타일 군집을 분석한 프로젝트입니다.
+NBA 공개 데이터를 활용해 `무엇이 승리를 만드는가`, `선수의 다음 경기 성과를 어디까지 예측할 수 있는가`, `플레이 스타일을 어떻게 해석 가능한 그룹으로 나눌 수 있는가`를 다룬 프로젝트입니다. 단순 팬심 프로젝트가 아니라 `EDA -> 통계 검정 -> 지도학습 -> 비지도학습 -> 시각화`를 한 저장소 안에서 끝까지 연결하는 분석 역량을 보여주는 데 초점을 맞췄습니다.
 
-## 개요
+## 빠른 판단
 
-- **목적**: 경기 승리 요인 분석, 선수 성과 예측·분류, 플레이 스타일 클러스터링
-- **기능**: 전처리, EDA, 통계 검정, 머신러닝(Random Forest·K-Means), 시각화
-- **저장소 정책**: 원본 데이터와 대용량 전처리 산출물은 GitHub에 포함하지 않음
+| 항목 | 내용 |
+|------|------|
+| 해결하려는 문제 | 승리 요인, 선수 성과, 플레이 스타일을 각각 따로 보지 않고 하나의 분석 파이프라인으로 정리할 수 있는가 |
+| 실제 의사결정 가치 | 코칭 포인트, 라인업/선수 기용, 유사 선수 탐색, 팀 전술 해석에 활용 가능한 인사이트 제공 |
+| 재현 가능한 범위 | 공개 Kaggle CSV 다운로드 후 전처리, EDA, 통계 검정, ML, 시각화까지 `NBA_통합_파이프라인.py`로 재현 가능 |
+| 재현 불가능한 범위 | 저장소만 클론한 직후 동일 결과 확인. 원본 CSV 4개 다운로드가 필요 |
+| 대체 확인 방법 | [대표 이미지](#대표-이미지), [머신러닝 인사이트 문서](./docs/NBA_머신러닝_인사이트.md), [재현성 가이드](./docs/reproducibility_and_validation.md) |
+
+## 왜 이 프로젝트가 가치 있었는가
+
+- 승패 요인, 선수 성과, 스타일 군집을 분리하지 않고 하나의 데이터 파이프라인으로 묶었습니다.
+- 통계 검정과 머신러닝을 같이 사용해 "상관관계 설명"과 "예측 가능성"을 분리해서 보여줬습니다.
+- 결과를 팀 전술, 선수 기용, 스카우팅 관점으로 번역해 단순 취미 분석에서 멈추지 않게 만들었습니다.
+
+## 검증 요약
+
+| 구분 | 핵심 수치 | 의미 | 근거 |
+|------|-----------|------|------|
+| 승리 요인 해석 | `eFG%`, `TS%`, `AST`가 핵심 | 단순 득점량보다 효율과 볼 순환이 승리에 더 강하게 연결 | [docs/NBA_분석플로우.md](./docs/NBA_분석플로우.md), [docs/NBA_비즈니스_전략.md](./docs/NBA_비즈니스_전략.md) |
+| 선수 성과 예측 | 문서 기준 `R² > 0.6` | 다음 경기 성과를 완전히 맞히는 것이 아니라 설명 가능한 수준의 예측력을 확보 | [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md) |
+| 예측-실측 일치 | 상관관계 약 `0.68~0.72` | 예측값이 실제 경기 결과와 방향성을 공유 | [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md) |
+| 오차 수준 | PLUS_MINUS 평균 오차 `±2.5`, PTS 평균 오차 `±3.2` | 선수 기용/비교에 쓸 수 있는 수준의 회귀 오차를 문서화 | [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md) |
+| 스타일 해석 | K-Means `5그룹` | 득점형, 플레이메이커, 리바운더, 올라운더, 역할선수 구분 | [docs/NBA_프로젝트_설명서.md](./docs/NBA_프로젝트_설명서.md) |
 
 ## 대표 이미지
 
@@ -18,67 +38,39 @@ NBA 공개 데이터셋을 활용해 경기 승리 요인, 선수 성과 예측,
 
 ![NBA 상관관계 히트맵](./outputs/NBA_시각화_결과/02_히트맵_상관_비교/NBA_01_상관관계_히트맵.png)
 
-## 데이터
+## 공개 저장소에서 확인할 수 있는 것
 
-이 저장소에는 원본 CSV와 대용량 전처리 결과를 포함하지 않습니다.
+1. [재현성/검증 가이드](./docs/reproducibility_and_validation.md)에서 데이터 준비와 확인 포인트를 먼저 봅니다.
+2. [NBA_통합_파이프라인.py](./NBA_통합_파이프라인.py)로 전체 엔트리 포인트를 확인합니다.
+3. [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md)에서 예측/군집 결과를 읽습니다.
+4. [outputs/](./outputs/)의 PNG 산출물로 결과 화면을 빠르게 검토합니다.
 
-코드는 아래 파일이 `data/` 폴더에 있다고 가정합니다.
+## 데이터와 실행
 
-- `data/games.csv`
-- `data/games_details.csv`
-- `data/players.csv`
-- `data/teams.csv`
-
-전처리 실행 후 아래 산출물이 로컬에 생성됩니다.
-
-- `data/processed/NBA_전처리_데이터.pkl`
-- `data/processed/NBA_전처리_최종_데이터.csv`
-
-### 데이터셋 출처
-
-- **NBA Games (Kaggle)**  
-  [NBA Games - Nathan Lauga (Kaggle)](https://www.kaggle.com/datasets/nathanlauga/nba-games/data)  
-  필요한 CSV를 다운로드한 뒤 `data/` 폴더에 배치하고 파이프라인을 실행하면 됩니다.
-
-## 실행
+- 입력 데이터: `games.csv`, `games_details.csv`, `players.csv`, `teams.csv`
+- 출처: [NBA Games - Nathan Lauga (Kaggle)](https://www.kaggle.com/datasets/nathanlauga/nba-games/data)
+- 실행:
 
 ```bash
 pip install -r requirements.txt
 python NBA_통합_파이프라인.py
 ```
 
-단계별 생략: `--skip-preprocessing`, `--skip-eda`, `--skip-statistics`, `--skip-visualization`, `--skip-ml`
+- 선택 실행: `--skip-preprocessing`, `--skip-eda`, `--skip-statistics`, `--skip-visualization`, `--skip-ml`
 
-## 폴더 구조
+## 엔지니어링 신호
 
-- `docs/`: 프로젝트 설명, 분석 플로우, 머신러닝 인사이트
-- `data/`: 로컬 원본 데이터와 전처리 산출물 위치
-- `outputs/`: 시각화 결과, 통계 검정 결과, 머신러닝 결과
-- `NBA_통합_파이프라인.py`: 전체 파이프라인 실행 스크립트
-
-## 주요 모듈
-
-| 모듈 | 설명 |
+| 항목 | 내용 |
 |------|------|
-| `NBA_전처리_모듈.py` | 경기·경기상세·선수·팀 병합, MIN→분 변환, 결측·이상치 처리, 파생 지표 계산 |
-| `NBA_EDA_모듈.py` | 분포·이상치(IQR·Z-score)·상관관계 히트맵·정규성 검토 |
-| `NBA_통계검정_모듈.py` | 승/패 t-test·Mann-Whitney U·Cohen's d, 클러스터 간 ANOVA·Kruskal-Wallis |
-| `NBA_머신러닝_모듈.py` | 경기 승/패 분류, 선수 PLUS_MINUS·PTS 회귀(LAG5 포함), K-Means 5그룹 클러스터링 |
-| `NBA_시각화_모듈.py` | 상관 히트맵·선수 Top10·시즌별 추이·승패 비교·종합 대시보드 시각화 |
+| Entry point | [NBA_통합_파이프라인.py](./NBA_통합_파이프라인.py) |
+| 모듈 책임 분리 | 전처리, EDA, 통계 검정, ML, 시각화를 파일 단위로 분리 |
+| 분석 구조 | 가설 -> 검정 -> 예측 -> 군집 -> 시각화 순서로 문서와 코드가 연결 |
+| 공개 기준 | 원본 CSV와 대용량 전처리 결과 제외, 코드/문서/PNG 중심 공개 |
 
-## 주요 인사이트
+## 더 보기
 
-- **승리 요인**: eFG%·TS%가 PTS보다 중요하고, AST가 REB보다 설명력이 큼
-- **선수 예측**: 최근 5경기(LAG5) 평균이 다음 경기 예측에 가장 중요
-- **클러스터**: 득점형·플레이메이커·리바운더·올라운더·역할선수 5그룹 도출
-
-## GitHub 업로드 기준
-
-- 포함 권장: Python 코드, `README.md`, `docs/`, 시각화 PNG 결과
-- 제외 권장: `data/*.csv`, `data/processed/*`, `outputs/**/*.pkl`, `__pycache__/`
-
-## 상세 문서
-
-- [docs/NBA_프로젝트_설명서.md](./docs/NBA_프로젝트_설명서.md) – 전체 개요·구조·설치
-- [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md) – ML 인사이트
-- [docs/NBA_비즈니스_전략.md](./docs/NBA_비즈니스_전략.md) – 비즈니스 전략·실행 계획
+- 프로젝트 설명서: [docs/NBA_프로젝트_설명서.md](./docs/NBA_프로젝트_설명서.md)
+- 머신러닝 인사이트: [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md)
+- 비즈니스 전략: [docs/NBA_비즈니스_전략.md](./docs/NBA_비즈니스_전략.md)
+- 재현성/검증 가이드: [docs/reproducibility_and_validation.md](./docs/reproducibility_and_validation.md)
+- 변경 이력: [CHANGELOG.md](./CHANGELOG.md)
