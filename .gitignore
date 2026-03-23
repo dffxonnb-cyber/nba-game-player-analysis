@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+.venv/
+venv/
+env/
+
+# Raw and processed datasets are not committed.
+data/*.csv
+data/*.pkl
+data/processed/
+
+# Large trained artifacts are optional local outputs.
+outputs/**/*.pkl
+outputs/**/*.joblib
+
+# OS/editor files
+.DS_Store
+Thumbs.db
