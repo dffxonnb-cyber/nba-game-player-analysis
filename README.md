@@ -41,9 +41,10 @@ NBA 공개 데이터를 활용해 `무엇이 승리를 만드는가`, `선수의
 ## 공개 저장소에서 확인할 수 있는 것
 
 1. [재현성/검증 가이드](./docs/reproducibility_and_validation.md)에서 데이터 준비와 확인 포인트를 먼저 봅니다.
-2. [NBA_통합_파이프라인.py](./NBA_통합_파이프라인.py)로 전체 엔트리 포인트를 확인합니다.
-3. [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md)에서 예측/군집 결과를 읽습니다.
-4. [outputs/](./outputs/)의 PNG 산출물로 결과 화면을 빠르게 검토합니다.
+2. [문서 인덱스](./docs/README.md)에서 공개 검토 순서와 핵심 자산 위치를 빠르게 확인합니다.
+3. [NBA_통합_파이프라인.py](./NBA_통합_파이프라인.py)로 전체 엔트리 포인트를 확인합니다.
+4. [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md)에서 예측/군집 결과를 읽습니다.
+5. [outputs/](./outputs/)의 PNG 산출물로 결과 화면을 빠르게 검토합니다.
 
 ## 데이터와 실행
 
@@ -66,10 +67,12 @@ python NBA_통합_파이프라인.py
 | 모듈 책임 분리 | 전처리, EDA, 통계 검정, ML, 시각화를 파일 단위로 분리 |
 | 분석 구조 | 가설 -> 검정 -> 예측 -> 군집 -> 시각화 순서로 문서와 코드가 연결 |
 | 공개 기준 | 원본 CSV와 대용량 전처리 결과 제외, 코드/문서/PNG 중심 공개 |
+| 자동 검증 | 공개 자산 체크 + synthetic dataframe 기반 smoke test로 최소 재현 신뢰도 확보 |
 
 ## 더 보기
 
 - 프로젝트 설명서: [docs/NBA_프로젝트_설명서.md](./docs/NBA_프로젝트_설명서.md)
+- 문서 인덱스: [docs/README.md](./docs/README.md)
 - 머신러닝 인사이트: [docs/NBA_머신러닝_인사이트.md](./docs/NBA_머신러닝_인사이트.md)
 - 비즈니스 전략: [docs/NBA_비즈니스_전략.md](./docs/NBA_비즈니스_전략.md)
 - 재현성/검증 가이드: [docs/reproducibility_and_validation.md](./docs/reproducibility_and_validation.md)

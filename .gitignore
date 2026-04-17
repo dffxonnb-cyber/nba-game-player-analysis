@@ -5,6 +5,7 @@ __pycache__/
 .venv/
 venv/
 env/
+.matplotlib-test/
 
 # Raw and processed datasets are not committed.
 data/*.csv
