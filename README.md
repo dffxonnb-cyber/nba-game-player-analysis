@@ -1,5 +1,9 @@
 # nba-game-player-analysis
 
+[![Verify](https://github.com/dffxonnb-cyber/nba-game-player-analysis/actions/workflows/verify.yml/badge.svg)](https://github.com/dffxonnb-cyber/nba-game-player-analysis/actions/workflows/verify.yml)
+[![Prediction Correlation](https://img.shields.io/badge/prediction%20corr-0.68--0.72-2563eb)](./docs/NBA_머신러닝_인사이트.md)
+[![Pipeline](https://img.shields.io/badge/pipeline-EDA%20to%20ML-0f766e)](./NBA_통합_파이프라인.py)
+
 NBA 공개 데이터를 활용해 `무엇이 승리를 만드는가`, `선수의 다음 경기 성과를 어디까지 예측할 수 있는가`, `플레이 스타일을 어떻게 해석 가능한 그룹으로 나눌 수 있는가`를 다룬 프로젝트입니다. 단순 팬심 프로젝트가 아니라 `EDA -> 통계 검정 -> 지도학습 -> 비지도학습 -> 시각화`를 한 저장소 안에서 끝까지 연결하는 분석 역량을 보여주는 데 초점을 맞췄습니다.
 
 ## 빠른 판단
